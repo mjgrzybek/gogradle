@@ -57,6 +57,7 @@ jobs:
       with:
           name: reports
           path: /tmp/reports.tar.bz2
+          retention-days: 5
     - name: After success
       run: ./gradlew jacocoTestReport coveralls
       if: success()
