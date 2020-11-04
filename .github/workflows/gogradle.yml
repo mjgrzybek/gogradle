@@ -50,6 +50,13 @@ jobs:
         DEP_DIR: /tmp/dep
         EXAMPLES_DIR: /tmp/examples
         JAVA_OPTS: -Xmx1024m -XX:MaxPermSize=256m
+    - name: Pack reports
+      run: tar cjvf /tmp/reports.tar.bz2 /tmp/gogs/.gogradle/reports
+    - name: Upload reports
+      uses: actions/upload-artifact@v2
+      with:
+          name: reports
+          path: /tmp/reports.tar.bz2
     - name: After success
       run: ./gradlew jacocoTestReport coveralls
       if: success()
